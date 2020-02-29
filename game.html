@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Game - Tasteless food</title>
+	<link rel="stylesheet" href="style.css">
+	<!--    bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	 crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-5">
+					<input class="btn btn-success" type="button" value="Pause" onclick="return pauseButton()" />
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div class="col-md-2 col-md-offset-5"> -->
+				<div class="col-3"></div>
+				<div class="col-6">
+					<div id="gameText">Your score:</div>
+					<div id="counter"></div>
+					<div class="typeBody">
+						<img id="fat" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKESURBVGhD7dpLqE1RHMfx400MkGceJUnKxCNRZMDIgESJqcdQJEndEUXkNVaUV8ozA6IYMUV5lSQZeRZS8ub7yzm12v320bl77W3d7F99urezdnv///fsxzrr3Ead/yQjsBuP8RUfcR2r0As9IrPxAr9ynMdAJJ3xeA3XQOgIks5huMKzfkLvXJLpi/dwhTv7kGR0WrmC81xGkhkDV3CeS0gyvfEKrmhnB5LNXriis75hKpLNMDyBKz60E8lnEh7ANaDb7n70QdIZ1fzZH+txFZqm3IOeMXOg6Hoa+efXdKKi1+EuPmMz+iEvE3ENX3AKSTwYF+ARsqfQU+iutBjTMBOrcQxqINxWp5veLV1flUcz2D1QEWFRRbzEPFSWQTgLV0xRn7ASpUfvxBm4ImL5jiUoNbvgDh6bJp/TUUrmI+Y18Te6C2pGHTW6xT6EO2CZtiBq1sIdqGzvMBjRcgfuQFXQDCFK9OR1B6jKbUTJNrgDVOUHhqNwrsAd4L55rQhNXTTBdGPLUDjP4Xa+CPqA5Ma64yI0xXdjXSgcTRuyO1YDyklkx7pLz6m8u+NBFIrmVW7HWklUxkG3SLdNJ45DWQo3fgKF4xYUtI7bynJkxzuhU3cIlClw20RZqNiIcKea1On6aEUflMLxTt1EmHMIx99iLKJEf/XTOIq5eiFI7Eb06XITLuAQJqCStGtEKyqz0G6Kk23kn6VdI1p0UHRHcuNSNxI7dSNNdSOxUzfSVDcSO3UjTck0MhR56103oEyGGxetXCYTLRC4IrdD0VLrM7htNiCZzMAbhAXewgC0shAfEG6jr6iT+/ZqNPQlzwGsgStQ19NWaJsV6DH/YFOnszQavwHG/RtqUewmegAAAABJRU5ErkJggg==">
+						<img id="normal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHZSURBVGhD7Ze7SxxRFIdX0/mKNpYiVj7K2AgqaqO1Nj7IPyPWSZ022CiKNiKCgo9CtFMjVgaENIakThFFvx/cA5dhdpkBcY5yP/hgOY/hnF12791aIvG2aMI5XMer4BrOonJvgm48xqc6HqJqXNOKl5i3QOwFtqBbVjAeeAsXgtshZi6jSz7gb7RBv2IWxSx/j83ojgG0IR/xI2bpROWsrh/dMYI24F8F6qCc1anHHb1oA8o+zKJYXNODLrlBG3If29HowAO0/DW6ZQltUPkLvwX1Os7pl8w1jQ5DU4eiW9pwA/MGz1NXFh2grtApfYrZYXXKbwZ/hFiselyd8KsYD7iDg5hlCJWLa7+jC6YwHuwLNrrhKhef8HICK2cPbSB9iYtcO3SdOULr28VK6cIHtIHGsCjjaH3/Me9K82pMog1T9hKo2j9o/XpWZehQs0HOFCjJOVr/vAJVsYg2yIkCJVGP9etZlZEWCaRFXpq0SCAt8tLEi/zDaSyKatXjYpFPGA9TdJnsEnqtZ1XKDJZZJq9eMRdk3+GfWA/l4iWKfIKvyme0Ae8UqINyVqced4xi2UXU4460iDfSIt5Ii3gjLeKNtIg33s0iw3gbbPRvUTmrU08i4Zda7RlhLTg/NqHNIgAAAABJRU5ErkJggg==">
+						<img id="strong" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAATfSURBVGhDzdpXiCxFGIbhMWfEiJgzJoyIGMB4IwaOeg5iAAOi6IU5oZjAHFBUFBHBLKKYUC8UFTEnBC8MGFExi2LO+r7j1vBv7T8zuzvxgwfOVPV210xXV1dXn8ZEFsHuOBP34HlcgWUwLtkad+Fp3IhjsSVa2Rif4t/EMxiHbIqfkbXRL7cAGk9NFLSzOUad65C1rTgAje9DQeZIjDqvImtbcREa74SCzPUYZRbEr8jaVpyMxt2hIPMisni638KuzU+9xTb8iKOanyZnE2TtinZD44xQkPEia15ME5kf66HUv4DDYRc8DqfhLFyMy3ADrpr4rNPhNsfDvzkaZV9vYgnEHIxS384KaA67WWW0IczD+APZNv30LQ6CuRzZNoUjbjMrI9sgao4K5Cb8gy8R62+Bv3z51T0j/uonoPzqftaFcJur4d+8hLIfz34ZZneGeRylPuOP20rdsNqlMEtiISyKWL8FZhv3XfZzpwVkWXgc8zXisWrno5XHkG1UWF/nJ5T60g1mkwdR9mM3ilkFpa6duWgl/iqZr1DnfZT6CyyYZd5G2Y9dMWZPlLp21kUrByLbKPLXiXkZpe4+C2YR7xFx8JiHGOd+pS7zAxxFW9kI2YbRXoh5BKXO+0m7LI/F///nlPhrxmNshhgnsLG+9iwmxfvEL8g2LhyJYq5FqfsLDgQxe6B0P+sfwpqI2RtlH46G9Rd+F6U+YxumJHaVjHfymGMQ63dByaGIdcV7iF/Ya6vUfWRBlW7zwCMwJc6pso2LExHjOB/rz4axz36GWBeV7cwTKOX3WlDlDcS/raXD/jawC2R/4HxrKcSsiLjNKzBrI5bXvMEZpyKxO5+KOs7j2k0YnRG3jf36OXiaPeAl8CJ3dMkSZ8728VWxUijLPACzH2L5dsjiPu0Nt+J1fICb4XH6lro7lrusZzCWR4fBePGXMudWcWI69OyL2MjvYBf00TSb9th4G+yztmewlN+GkcZFi28QG1vmS15D18CzYzf1WcMu6hBbj5A7YuS5ErFROgfzoY5f4n7Ebb3Osm2HHi/G7GbqkpLXw7ZwqD4FXqj1dvWwPtKch7qB0+F1VD8RjjT2fR95s8Z2ci7GLs6j4jPKdOyDscyjyBrczjgs/qVxhSRrcMb7SD3tGZtsj6zRmc/hfWgsszC6PddETk28aTpEj12eRNbobnzKtGuujpHHR4FuD0Pd/A2nNPtj0vP4sOKLmF6/RO0kDDVbwZlv1pheuBo5tPi46UWbNUQOs76/OAROMH2xNN0v7UL3UOLyTaclTe/0k1YCQ5wJuIriM7zrYi4C1n/vAvvA43uL7ODFh6jXqTole722BgYaF/Q6fQm7jwtzM4lnJe7DsznQ55QN8AXiQSMXzcpK+kwSXy/oNQws66PdmtXvSBfMphm7Ytzf7RhIfN3W7n28Z8h5Vi/5DXGfLmD3PevgE8QDFS7M+bjbS5ZDvV/XvfqatfAx6gPpDiyGXuP/vqj3bVnf4vDnqmN9EJdWXUzoV1wajfv/E7MZMNKshmzVw7tyv29U9SvoTu9bZhQX1+pRRL4Hd+Tqd5wcxuO49tWX+OI/7li+Bl4ag4hzqnis+Oqhp8xB2amTPt+ND/LZwIlnWQv2NYKvJvoWZ6v+F4ydmp8GH68T/6vHDs1PM0qj8R+va1GotNktVAAAAABJRU5ErkJggg==">
+					</div>
+				</div>
+				<div class="col-3"></div>
+			</div>
+		</div>
+	</div>
+	<div class="container" id="game">
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-10">
+				<!-- images -->
+				<img class="img" id="img_1" value="1" src="./img/buger.jpg">
+				<img class="img" id="img_2" src="./img/lazania.jpg">
+				<img class="img" id="img_3" src="./img/stake.jpg">
+				<img class="img" id="img_4" src="./img/sushi.jpg">
+			</div>
+			<div class="col-1"></div>
+		</div>
+		<div class="row" id="emptyField"></div>
+		<div class="row">
+			<div class="col-5"></div>
+			<div class="col-1">
+				<div id="buttonClickLeft">
+					<button type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-arrow-left"></span> Left
+					</button>
+				</div>
+			</div>
+
+			<!-- <div class="col-1"></div> -->
+			<div class="col-1">
+				<div id="buttonClickRight">
+					<button type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-arrow-right"></span> Right
+					</button>
+				</div>
+			</div>
+			<div class="col-5"></div>
+		</div>
+	</div>
+	<script src="scripts-my.js"></script>
+</body>
+
+</html>
